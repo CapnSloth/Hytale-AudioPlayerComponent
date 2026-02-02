@@ -1,5 +1,8 @@
 # Hytale-AudioPlayerComponent
-A library for playing sounds from a list in sequence or randomly with capability for looping. Currently exists as a workaround tool for the lack of audio functionality in the early versions of Hytale.
+A component and system for playing sounds from a list in sequence or randomly with capability for looping. Currently exists as a workaround tool for the lack of audio functionality in the early versions of Hytale.
+
+This has come as a by-product of my mod development and is a tool I built for my own use,
+please feel totally free to modify or build upon this to suit your needs.
 
 # Don't forget to register the component and system in your plugin setup!
 
