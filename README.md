@@ -3,7 +3,7 @@ A library for playing sounds from a list in sequence or randomly with capability
 
 ## Usage:
 ### Adding the componenet to the world
-You can either:
+You can either: /n
 >a) addComponent to any entity you like.
 >It will require a TransformComponent and a UUIDComponent.
 or
