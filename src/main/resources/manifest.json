@@ -1,14 +1,14 @@
 {
-    "Group": "Example",
-    "Name": "ExamplePlugin",
+    "Group": "CapnSloth",
+    "Name": "AudioPlayerComponent",
     "Version": "0.0.2",
-    "Description": "An example plugin for HyTale!",
+    "Description": "A simple AudioComponent and System for sequentially playing sounds or looping audio.",
     "Authors": [
         {
-            "Name": "It's you!"
+            "Name": "CapnSloth"
         }
     ],
-    "Website": "example.org",
+    "Website": "",
     "ServerVersion": "*",
     "Dependencies": {
         
@@ -17,6 +17,5 @@
         
     },
     "DisabledByDefault": false,
-    "Main": "org.example.plugin.ExamplePlugin",
     "IncludesAssetPack": true
 }

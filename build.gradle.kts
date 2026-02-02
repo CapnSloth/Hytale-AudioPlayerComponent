@@ -4,9 +4,9 @@ plugins {
     id("run-hytale")
 }
 
-group = findProperty("pluginGroup") as String? ?: "com.example"
+group = findProperty("pluginGroup") as String? ?: "com.capnsloth"
 version = findProperty("pluginVersion") as String? ?: "1.0.0"
-description = findProperty("pluginDescription") as String? ?: "A Hytale plugin template"
+description = findProperty("pluginDescription") as String? ?: "A simple AudioComponent and System for sequentially playing sounds or looping audio."
 
 repositories {
     mavenLocal()
@@ -62,7 +62,7 @@ tasks {
         archiveClassifier.set("")
         
         // Relocate dependencies to avoid conflicts
-        relocate("com.google.gson", "com.yourplugin.libs.gson")
+        relocate("com.google.gson", "com.capnsloth.libs.gson")
         
         // Minimize JAR size (removes unused classes)
         minimize()
