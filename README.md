@@ -4,10 +4,10 @@ A library for playing sounds from a list in sequence or randomly with capability
 ## Usage:
 ### Adding the componenet to the world
 You can either:
-" a) addComponent to any entity you like.
-It will require a TransformComponent and a UUIDComponent."
+>a) addComponent to any entity you like.
+>It will require a TransformComponent and a UUIDComponent.
 or
-" b) Use the component's built in spawn function as such:
-```AudioPlayerComponent variableName = AudioPlayerComponent.spawnNewAudioComponentEntity(vector3dSpawnPosition, componentAccessor)```
-<sup>componentAccessor can anything implementing ComponentAccessor e.g. Store or CommandBuffer</sup> "
+>b) Use the component's built in spawn function as such:
+>```AudioPlayerComponent variableName = AudioPlayerComponent.spawnNewAudioComponentEntity(vector3dSpawnPosition, componentAccessor)```
+<sup>componentAccessor can anything implementing ComponentAccessor e.g. Store or CommandBuffer</sup>
 
