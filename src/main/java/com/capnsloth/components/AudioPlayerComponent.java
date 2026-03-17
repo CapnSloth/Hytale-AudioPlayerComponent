@@ -36,11 +36,15 @@ public class AudioPlayerComponent implements Component<EntityStore> {
     public boolean autoplay = false;
     public boolean autoplayAsRandom = false;
     public UUID selfUUID;
-
+    public Ref<EntityStore> playerRef;
+    
     public AudioPlayerComponent(){
 
     }
-
+    
+    public AudioPlayerComponent(Ref<EntityStore> player){
+        playerRef = player;
+    }
 
     public void addSound(String soundEventId){
         if(sounds.contains(soundEventId)) return; // Already contains sound, don't duplicate.
@@ -105,7 +109,13 @@ public class AudioPlayerComponent implements Component<EntityStore> {
     }
 
     public void playSound(String soundId, Vector3d pos, @Nonnull ComponentAccessor<EntityStore> componentAccessor){
-        SoundUtil.playSoundEvent3d(SoundEvent.getAssetMap().getIndex(soundId), SoundCategory.UI, pos, componentAccessor);
+        if(playerRef==null)
+        {
+            SoundUtil.playSoundEvent3d(SoundEvent.getAssetMap().getIndex(soundId), SoundCategory.UI, pos, componentAccessor);
+        }
+        else {
+            SoundUtil.playSoundEvent3dToPlayer(playerRef,SoundEvent.getAssetMap().getIndex(soundId), SoundCategory.UI, pos, componentAccessor);
+        }
         playNextTime = System.nanoTime() + getDurationOf(soundId);
         lastPlayTime = System.nanoTime();
         lastSoundIndex = sounds.indexOf(soundId);
@@ -162,6 +172,24 @@ public class AudioPlayerComponent implements Component<EntityStore> {
         holder.addComponent(TransformComponent.getComponentType(), new TransformComponent(spawnPos, Vector3f.ZERO));
 
         AudioPlayerComponent apc = new AudioPlayerComponent();
+        apc.selfUUID = uuid;
+        holder.addComponent(AudioPlayerComponent.getComponentType(), apc);
+
+        componentAccessor.getExternalData().getWorld().execute(() -> {
+            componentAccessor.addEntity(holder, AddReason.SPAWN);
+        });
+
+        return apc;
+    }
+
+        public static AudioPlayerComponent spawnNewAudioPlayerEntity(Vector3d spawnPos, @Nonnull ComponentAccessor<EntityStore> componentAccessor, Ref<EntityStore> playerRef){
+        Holder<EntityStore> holder = EntityStore.REGISTRY.newHolder();
+
+        UUID uuid = UUIDUtil.generateVersion3UUID();
+        holder.addComponent(UUIDComponent.getComponentType(), new UUIDComponent(uuid));
+        holder.addComponent(TransformComponent.getComponentType(), new TransformComponent(spawnPos, Vector3f.ZERO));
+
+        AudioPlayerComponent apc = new AudioPlayerComponent(playerRef);
         apc.selfUUID = uuid;
         holder.addComponent(AudioPlayerComponent.getComponentType(), apc);
 
